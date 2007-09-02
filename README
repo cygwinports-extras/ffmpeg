@@ -38,21 +38,21 @@ Canonical website:
 -------------------------------------------
 
 Build instructions:
-  unpack ffmpeg-9958-X-src.tar.bz2
+  unpack ffmpeg-10270-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./ffmpeg-9958-X.cygport all
+  cygport ./ffmpeg-10270-X.cygport all
 
 This will create:
-  /usr/src/ffmpeg-9958-X-src.tar.bz2
-  /usr/src/ffmpeg-9958-X.tar.bz2
-  /usr/src/ffmpeg-devel-9958-X.tar.bz2
-  /usr/src/libavcodec51-9958-X.tar.bz2
-  /usr/src/libavformat51-9958-X.tar.bz2
-  /usr/src/libavutil49-9958-X.tar.bz2
-  /usr/src/libpostproc51-9958-X.tar.bz2
-  /usr/src/libswscale0-9958-X.tar.bz2
+  /usr/src/ffmpeg-10270-X-src.tar.bz2
+  /usr/src/ffmpeg-10270-X.tar.bz2
+  /usr/src/ffmpeg-devel-10270-X.tar.bz2
+  /usr/src/libavcodec51-10270-X.tar.bz2
+  /usr/src/libavformat51-10270-X.tar.bz2
+  /usr/src/libavutil49-10270-X.tar.bz2
+  /usr/src/libpostproc51-10270-X.tar.bz2
+  /usr/src/libswscale0-10270-X.tar.bz2
 
 -------------------------------------------
 
@@ -68,13 +68,13 @@ Files included in the binary packages:
   /usr/lib/vhook/null.dll
   /usr/lib/vhook/ppm.dll
   /usr/lib/vhook/watermark.dll
-  /usr/share/doc/Cygwin/ffmpeg-9958.README
-  /usr/share/doc/ffmpeg-9958/COPYING
-  /usr/share/doc/ffmpeg-9958/CREDITS
-  /usr/share/doc/ffmpeg-9958/ChangeLog
-  /usr/share/doc/ffmpeg-9958/INSTALL
-  /usr/share/doc/ffmpeg-9958/MAINTAINERS
-  /usr/share/doc/ffmpeg-9958/README
+  /usr/share/doc/Cygwin/ffmpeg-10270.README
+  /usr/share/doc/ffmpeg-10270/COPYING
+  /usr/share/doc/ffmpeg-10270/CREDITS
+  /usr/share/doc/ffmpeg-10270/ChangeLog
+  /usr/share/doc/ffmpeg-10270/INSTALL
+  /usr/share/doc/ffmpeg-10270/MAINTAINERS
+  /usr/share/doc/ffmpeg-10270/README
   /usr/share/man/man1/ffmpeg.1.gz
   /usr/share/man/man1/ffplay.1.gz
   /usr/share/man/man1/ffserver.1.gz
@@ -129,6 +129,9 @@ Files included in the binary packages:
 ------------------
 
 Port Notes:
+
+----- version 10270-1 -----
+Updated SVN snapshot.
 
 ----- version 9958-1 -----
 Updated SVN snapshot.  Re-added libswscale.
