@@ -99,15 +99,22 @@ Files included in the binary packages:
   /usr/include/ffmpeg/avcodec.h
   /usr/include/ffmpeg/avformat.h
   /usr/include/ffmpeg/avio.h
+  /usr/include/ffmpeg/avstring.h
   /usr/include/ffmpeg/avutil.h
+  /usr/include/ffmpeg/base64.h
+  /usr/include/ffmpeg/bswap.h
   /usr/include/ffmpeg/common.h
   /usr/include/ffmpeg/fifo.h
   /usr/include/ffmpeg/integer.h
   /usr/include/ffmpeg/intfloat_readwrite.h
+  /usr/include/ffmpeg/intreadwrite.h
   /usr/include/ffmpeg/log.h
+  /usr/include/ffmpeg/lzo.h
   /usr/include/ffmpeg/mathematics.h
   /usr/include/ffmpeg/md5.h
+  /usr/include/ffmpeg/mem.h
   /usr/include/ffmpeg/opt.h
+  /usr/include/ffmpeg/random.h
   /usr/include/ffmpeg/rational.h
   /usr/include/ffmpeg/rgb2rgb.h
   /usr/include/ffmpeg/rtp.h
@@ -129,6 +136,9 @@ Files included in the binary packages:
 ------------------
 
 Port Notes:
+
+----- version 10755-2 -----
+Install some headers required by MPlayer.
 
 ----- version 10755-1 -----
 Updated SVN snapshot.
