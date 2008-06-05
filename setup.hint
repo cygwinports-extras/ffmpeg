@@ -1,5 +1,5 @@
 category: Audio Video
-requires: cygwin libavcodec51 libavformat51 libavutil49 libSDL12 libfreetype26 libimlib2
+requires: cygwin libavcodec51 libavdevice52 libavformat52 libavutil49 libswscale0 libSDL12 libfreetype26 libimlib2
 sdesc: "FFmpeg audio and video interpreter (utilities)"
 ldesc: "FFmpeg is a complete solution to record, convert and stream
 audio and video. It includes libavcodec, the leading audio/video codec
