@@ -4,17 +4,18 @@ FFmpeg is a complete solution to record, convert and stream audio and
 video. It includes libavcodec, the leading audio/video codec library.
 
 Runtime requirements:
-  cygwin-1.5.25-11
+  cygwin-1.5.25-15
   libSDL12-1.2.13-1
   liba52_0-0.7.4-2
   libdirac10-0.10.0-1
   libfaac0-1.26-1
   libfaad0-2.6.1-2
-  libfreetype26-2.3.5-2
+  libfreetype26-2.3.6-1
   libgsm0-1.0.12-1
   libimlib2-1.4.0-1
   libmp3lame0-3.97-1
   libnut0-658-1
+  libschroedinger1.0_0-1.0.3-1
   libtheora0-1.0beta3-1
   libvorbis0-1.2.0-1
   libvorbisenc2-1.2.0-1
@@ -24,11 +25,11 @@ Runtime requirements:
 
 Build requirements:
 (besides corresponding devel packages)
-  binutils-20060817-1
+  binutils-20080523-1
   cygport-0.3.11-1
   gcc-core-3.4.4-3
   make-3.81-1
-  perl-5.10.0-3
+  perl-5.10.0-4
   sed-4.1.5-2
 
 Canonical website:
@@ -37,23 +38,23 @@ Canonical website:
 -------------------------------------------
 
 Build instructions:
-  unpack ffmpeg-13270-X-src.tar.bz2
+  unpack ffmpeg-13777-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./ffmpeg-13270-X.cygport all
+  cygport ./ffmpeg-13777-X.cygport all
 
 This will create:
-  /usr/src/ffmpeg-13270-X-src.tar.bz2
-  /usr/src/ffmpeg-13270-X.tar.bz2
-  /usr/src/ffmpeg-devel-13270-X.tar.bz2
-  /usr/src/libavcodec51-13270-X.tar.bz2
-  /usr/src/libavdevice52-13270-X.tar.bz2
-  /usr/src/libavfilter0-13270-X.tar.bz2
-  /usr/src/libavformat52-13270-X.tar.bz2
-  /usr/src/libavutil49-13270-X.tar.bz2
-  /usr/src/libpostproc51-13270-X.tar.bz2
-  /usr/src/libswscale0-13270-X.tar.bz2
+  /usr/src/ffmpeg-13777-X-src.tar.bz2
+  /usr/src/ffmpeg-13777-X.tar.bz2
+  /usr/src/ffmpeg-devel-13777-X.tar.bz2
+  /usr/src/libavcodec51-13777-X.tar.bz2
+  /usr/src/libavdevice52-13777-X.tar.bz2
+  /usr/src/libavfilter0-13777-X.tar.bz2
+  /usr/src/libavformat52-13777-X.tar.bz2
+  /usr/src/libavutil49-13777-X.tar.bz2
+  /usr/src/libpostproc51-13777-X.tar.bz2
+  /usr/src/libswscale0-13777-X.tar.bz2
 
 -------------------------------------------
 
@@ -69,12 +70,12 @@ Files included in the binary packages:
   /usr/lib/vhook/null.dll
   /usr/lib/vhook/ppm.dll
   /usr/lib/vhook/watermark.dll
-  /usr/share/doc/ffmpeg-13270/COPYING
-  /usr/share/doc/ffmpeg-13270/CREDITS
-  /usr/share/doc/ffmpeg-13270/ChangeLog
-  /usr/share/doc/ffmpeg-13270/INSTALL
-  /usr/share/doc/ffmpeg-13270/MAINTAINERS
-  /usr/share/doc/ffmpeg-13270/README
+  /usr/share/doc/ffmpeg-13777/COPYING
+  /usr/share/doc/ffmpeg-13777/CREDITS
+  /usr/share/doc/ffmpeg-13777/ChangeLog
+  /usr/share/doc/ffmpeg-13777/INSTALL
+  /usr/share/doc/ffmpeg-13777/MAINTAINERS
+  /usr/share/doc/ffmpeg-13777/README
   /usr/share/man/man1/ffmpeg.1.gz
   /usr/share/man/man1/ffplay.1.gz
   /usr/share/man/man1/ffserver.1.gz
@@ -100,45 +101,33 @@ Files included in the binary packages:
 (libswscale0)
   /usr/bin/cygswscale-0.dll
 
-(ffmpeg-devel)
-  /usr/include/ffmpeg/adler32.h
-  /usr/include/ffmpeg/avcodec.h
-  /usr/include/ffmpeg/avdevice.h
-  /usr/include/ffmpeg/avfilter.h
-  /usr/include/ffmpeg/avformat.h
-  /usr/include/ffmpeg/avio.h
-  /usr/include/ffmpeg/avstring.h
-  /usr/include/ffmpeg/avutil.h
-  /usr/include/ffmpeg/base64.h
-  /usr/include/ffmpeg/bswap.h
-  /usr/include/ffmpeg/common.h
-  /usr/include/ffmpeg/crc.h
-  /usr/include/ffmpeg/fifo.h
-  /usr/include/ffmpeg/intfloat_readwrite.h
-  /usr/include/ffmpeg/intreadwrite.h
-  /usr/include/ffmpeg/log.h
-  /usr/include/ffmpeg/lzo.h
-  /usr/include/ffmpeg/mathematics.h
-  /usr/include/ffmpeg/md5.h
-  /usr/include/ffmpeg/mem.h
-  /usr/include/ffmpeg/opt.h
-  /usr/include/ffmpeg/random.h
-  /usr/include/ffmpeg/rational.h
-  /usr/include/ffmpeg/rgb2rgb.h
-  /usr/include/ffmpeg/rtsp.h
-  /usr/include/ffmpeg/rtspcodes.h
-  /usr/include/ffmpeg/sha1.h
-  /usr/include/ffmpeg/swscale.h
+(libavcodec-devel)
   /usr/include/libavcodec/avcodec.h
   /usr/include/libavcodec/opt.h
+  /usr/lib/libavcodec.dll.a
+  /usr/lib/pkgconfig/libavcodec.pc
+
+(libavdevice-devel)
   /usr/include/libavdevice/avdevice.h
+  /usr/lib/libavdevice.dll.a
+  /usr/lib/pkgconfig/libavdevice.pc
+
+(libavfilter-devel)
   /usr/include/libavfilter/avfilter.h
+  /usr/lib/libavfilter.dll.a
+  /usr/lib/pkgconfig/libavfilter.pc
+
+(libavformat-devel)
   /usr/include/libavformat/avformat.h
   /usr/include/libavformat/avi.h
   /usr/include/libavformat/avio.h
   /usr/include/libavformat/riff.h
   /usr/include/libavformat/rtsp.h
   /usr/include/libavformat/rtspcodes.h
+  /usr/lib/libavformat.dll.a
+  /usr/lib/pkgconfig/libavformat.pc
+
+(libavutil-devel)
   /usr/include/libavutil/adler32.h
   /usr/include/libavutil/avstring.h
   /usr/include/libavutil/avutil.h
@@ -157,28 +146,28 @@ Files included in the binary packages:
   /usr/include/libavutil/random.h
   /usr/include/libavutil/rational.h
   /usr/include/libavutil/sha1.h
+  /usr/lib/libavutil.dll.a
+  /usr/lib/pkgconfig/libavutil.pc
+
+(libpostproc-devel)
   /usr/include/libpostproc/postprocess.h
+  /usr/lib/libpostproc.dll.a
+  /usr/lib/pkgconfig/libpostproc.pc
+
+(libswscale-devel)
   /usr/include/libswscale/rgb2rgb.h
   /usr/include/libswscale/swscale.h
-  /usr/include/postproc/postprocess.h
-  /usr/lib/libavcodec.dll.a
-  /usr/lib/libavdevice.dll.a
-  /usr/lib/libavfilter.dll.a
-  /usr/lib/libavformat.dll.a
-  /usr/lib/libavutil.dll.a
-  /usr/lib/libpostproc.dll.a
   /usr/lib/libswscale.dll.a
-  /usr/lib/pkgconfig/libavcodec.pc
-  /usr/lib/pkgconfig/libavdevice.pc
-  /usr/lib/pkgconfig/libavfilter.pc
-  /usr/lib/pkgconfig/libavformat.pc
-  /usr/lib/pkgconfig/libavutil.pc
-  /usr/lib/pkgconfig/libpostproc.pc
   /usr/lib/pkgconfig/libswscale.pc
 
 ------------------
 
 Port Notes:
+
+----- version 13777-1 -----
+Version bump.
+Added schroedinger support.
+Reorganized devel packages.
 
 ----- version 13270-1 -----
 Updated SVN snapshot with new libraries and ABI version bumps.

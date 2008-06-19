@@ -1,0 +1,131 @@
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x '*config.h.in' -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x doxy origsrc/ffmpeg/Makefile src/ffmpeg/Makefile
+--- origsrc/ffmpeg/Makefile	2008-05-23 19:33:35.000000000 -0500
++++ src/ffmpeg/Makefile	2008-05-23 19:37:42.265625000 -0500
+@@ -144,8 +144,8 @@
+ 	install -m 644 $(MANPAGES) "$(MANDIR)/man1"
+ 
+ install-vhook: videohook
+-	install -d "$(SHLIBDIR)/vhook"
+-	install -m 755 $(HOOKS) "$(SHLIBDIR)/vhook"
++	install -d "$(LIBDIR)/vhook"
++	install -m 755 $(HOOKS) "$(LIBDIR)/vhook"
+ 
+ uninstall: uninstall-progs uninstall-man uninstall-vhook
+ 
+@@ -157,7 +157,7 @@
+ 
+ uninstall-vhook:
+ 	rm -f $(addprefix "$(SHLIBDIR)/",$(ALLHOOKS_SRCS:.c=$(SLIBSUF)))
+-	-rmdir "$(SHLIBDIR)/vhook/"
++	-rmdir "$(LIBDIR)/vhook/"
+ 
+ clean::
+ 	rm -f gmon.out TAGS $(ALLPROGS) $(ALLPROGS_G) \
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x '*config.h.in' -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x doxy origsrc/ffmpeg/configure src/ffmpeg/configure
+--- origsrc/ffmpeg/configure	2008-05-23 19:33:34.000000000 -0500
++++ src/ffmpeg/configure	2008-05-25 00:12:14.984375000 -0500
+@@ -1259,9 +1261,11 @@
+         EXESUF=".exe"
+         SLIBPREF="cyg"
+         SLIBSUF=".dll"
+-        SLIBNAME_WITH_VERSION='$(SLIBPREF)$(FULLNAME)-$(LIBVERSION)$(SLIBSUF)'
++        SLIBNAME_WITH_VERSION='$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'
+         SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'
+-        SHFLAGS='-shared -Wl,--enable-auto-image-base'
++        SHFLAGS='-shared -Wl,--enable-auto-image-base -Wl,--out-implib,lib$(NAME).dll.a'
++        SLIB_INSTALL_EXTRA_CMD="mkdir -p \"\$(LIBDIR)\"; install -m 644 lib\$(NAME).dll.a \"\$(LIBDIR)/lib\$(NAME).dll.a\""
++        LDCONFIG=""
+         ;;
+     *-dos|freedos|opendos)
+         disable ffplay ffserver vhook
+@@ -1855,7 +1859,6 @@
+     add_ldflags "-p"
+ fi
+ 
+-VHOOKCFLAGS="-fPIC"
+ 
+ # Find out if the .align argument is a power of two or not.
+ if test $asmalign_pot = "unknown"; then
+@@ -2062,7 +2065,7 @@
+ 
+ if enabled shared; then
+     echo "BUILD_SHARED=yes" >> config.mak
+-    echo "PIC=-fPIC -DPIC" >> config.mak
++    echo "PIC=-DPIC" >> config.mak
+     echo "LIBTARGET=${LIBTARGET}" >> config.mak
+     echo "SLIBNAME=${SLIBNAME}" >> config.mak
+     echo "SLIBNAME_WITH_VERSION=${SLIBNAME_WITH_VERSION}" >> config.mak
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x '*config.h.in' -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x doxy origsrc/ffmpeg/libavcodec/Makefile src/ffmpeg/libavcodec/Makefile
+--- origsrc/ffmpeg/libavcodec/Makefile	2008-05-23 19:33:11.000000000 -0500
++++ src/ffmpeg/libavcodec/Makefile	2008-05-23 19:36:12.078125000 -0500
+@@ -370,9 +370,7 @@
+ 
+ OBJS-$(HAVE_XVMC)                      += xvmcvideo.o
+ 
+-ifndef CONFIG_SWSCALE
+ OBJS += imgresample.o
+-endif
+ 
+ # processor-specific code
+ ifdef HAVE_MMX
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x '*config.h.in' -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x doxy origsrc/ffmpeg/libavcodec/imgconvert.c src/ffmpeg/libavcodec/imgconvert.c
+--- origsrc/ffmpeg/libavcodec/imgconvert.c	2008-05-23 19:33:15.000000000 -0500
++++ src/ffmpeg/libavcodec/imgconvert.c	2008-05-24 23:39:08.703125000 -0500
+@@ -2107,7 +2107,6 @@
+ }
+ #endif
+ 
+-#ifndef CONFIG_SWSCALE
+ static uint8_t y_ccir_to_jpeg[256];
+ static uint8_t y_jpeg_to_ccir[256];
+ static uint8_t c_ccir_to_jpeg[256];
+@@ -2627,7 +2626,6 @@
+     avpicture_free(tmp);
+     return ret;
+ }
+-#endif
+ 
+ /* NOTE: we scan all the pixels to have an exact information */
+ static int get_alpha_info_pal8(const AVPicture *src, int width, int height)
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x '*config.h.in' -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x doxy origsrc/ffmpeg/libavformat/Makefile src/ffmpeg/libavformat/Makefile
+--- origsrc/ffmpeg/libavformat/Makefile	2008-05-23 19:33:32.000000000 -0500
++++ src/ffmpeg/libavformat/Makefile	2008-05-25 14:30:35.796875000 -0500
+@@ -9,7 +9,7 @@
+ 
+ OBJS = allformats.o cutils.o os_support.o sdp.o utils.o
+ 
+-HEADERS = avformat.h avio.h rtsp.h rtspcodes.h
++HEADERS = avformat.h avi.h avio.h riff.h rtsp.h rtspcodes.h
+ 
+ # muxers/demuxers
+ OBJS-$(CONFIG_AAC_DEMUXER)               += raw.o
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x '*config.h.in' -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x doxy origsrc/ffmpeg/libavutil/Makefile src/ffmpeg/libavutil/Makefile
+--- origsrc/ffmpeg/libavutil/Makefile	2008-05-23 19:33:19.000000000 -0500
++++ src/ffmpeg/libavutil/Makefile	2008-05-23 19:36:39.515625000 -0500
+@@ -26,10 +26,12 @@
+           avstring.h \
+           avutil.h \
+           base64.h \
++          bswap.h \
+           common.h \
+           crc.h \
+           fifo.h \
+           intfloat_readwrite.h \
++          intreadwrite.h \
+           log.h \
+           lzo.h \
+           mathematics.h \
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x '*config.h.in' -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in -x doxy origsrc/ffmpeg/subdir.mak src/ffmpeg/subdir.mak
+--- origsrc/ffmpeg/subdir.mak	2008-05-23 19:33:35.000000000 -0500
++++ src/ffmpeg/subdir.mak	2008-05-24 23:47:22.281250000 -0500
+@@ -41,10 +41,6 @@
+ 	install -d "$(SHLIBDIR)"
+ 	install -m 755 $(SUBDIR)$(SLIBNAME) "$(SHLIBDIR)/$(SLIBNAME_WITH_VERSION)"
+ 	$(STRIP) "$(SHLIBDIR)/$(SLIBNAME_WITH_VERSION)"
+-	cd "$(SHLIBDIR)" && \
+-		$(LN_S) $(SLIBNAME_WITH_VERSION) $(SLIBNAME_WITH_MAJOR)
+-	cd "$(SHLIBDIR)" && \
+-		$(LN_S) $(SLIBNAME_WITH_VERSION) $(SLIBNAME)
+ 	$(SLIB_INSTALL_EXTRA_CMD)
+ 
+ install-lib$(NAME)-static: $(SUBDIR)$(LIBNAME)

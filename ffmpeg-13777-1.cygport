@@ -1,0 +1,50 @@
+DESCRIPTION="FFmpeg Audio/video codecs library"
+HOMEPAGE="http://ffmpeg.mplayerhq.hu/"
+SVN_URI="svn://svn.mplayerhq.hu/ffmpeg"
+SVN_REV=${PV}
+inherit svn
+
+PKG_NAMES="${PN}"
+PKG_HINTS="setup"
+PKG_CONTENTS[0]='--exclude=html usr/bin/*.exe usr/lib/vhook/ usr/share/'
+
+name=(avcodec avdevice avfilter avformat avutil postproc swscale)
+vers=(51      52       0        52       49     51       0)
+
+for ((i=0; i < ${#vers[*]}; i++))
+do
+	PKG_NAMES+=" lib${name[i]}${vers[i]} lib${name[i]}-devel"
+	PKG_HINTS+=" lib${name[i]} lib${name[i]}-devel"
+	PKG_CONTENTS[((2 * i + 1))]="usr/bin/cyg${name[i]}-${vers[i]}.dll"
+	PKG_CONTENTS[((2 * i + 2))]="usr/include/lib${name[i]}/
+                                 usr/lib/lib${name[i]}.*
+                                 usr/lib/pkgconfig/lib${name[i]}.pc"
+done
+
+src_compile() {
+	cd ${B}
+	${S}/configure \
+		--source-path=${S} \
+		--prefix=/usr --libdir=/usr/lib --shlibdir=/usr/bin \
+		--incdir=/usr/include --mandir=/usr/share/man \
+		--disable-static --enable-shared \
+		--enable-gpl \
+		--enable-postproc --enable-swscale --enable-avfilter \
+		--enable-pthreads --enable-x11grab \
+		--enable-liba52 \
+		--enable-libdirac \
+		--enable-libfaac --enable-libfaad \
+		--enable-libgsm \
+		--enable-libmp3lame \
+		--enable-libnut \
+		--enable-libschroedinger \
+		--enable-libtheora --enable-libvorbis \
+		--enable-libx264 \
+		--enable-libxvid \
+		--disable-ipv6 \
+		--disable-libamr-nb \
+		--disable-libamr-wb \
+		--disable-libdc1394 \
+		|| error "configure failed"
+	cygmake -j1 depend all
+}
