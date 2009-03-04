@@ -4,22 +4,28 @@ SVN_URI="svn://svn.mplayerhq.hu/ffmpeg"
 SVN_REV=${PV}
 inherit svn
 
+PATCH_URI="r17736-cygwin.patch
+           r17736-headers-install.patch
+           r17736-vhook-install.patch"
+
 PKG_NAMES="${PN}"
-PKG_HINTS="setup"
-PKG_CONTENTS[0]='--exclude=html usr/bin/*.exe usr/lib/vhook/ usr/share/'
+ffmpeg_CONTENTS='--exclude=html usr/bin/*.exe usr/lib/vhook/ usr/share/'
 
 name=(avcodec avdevice avfilter avformat avutil postproc swscale)
-vers=(51      52       0        52       49     51       0)
+vers=(52      52       0        52       49     51       0)
 
 for ((i=0; i < ${#vers[*]}; i++))
 do
-	PKG_NAMES+=" lib${name[i]}${vers[i]} lib${name[i]}-devel"
-	PKG_HINTS+=" lib${name[i]} lib${name[i]}-devel"
-	PKG_CONTENTS[((2 * i + 1))]="usr/bin/cyg${name[i]}-${vers[i]}.dll"
-	PKG_CONTENTS[((2 * i + 2))]="usr/include/lib${name[i]}/
-                                 usr/lib/lib${name[i]}.*
-                                 usr/lib/pkgconfig/lib${name[i]}.pc"
+	n=${name[i]}
+	v=${vers[i]}
+	PKG_NAMES+=" lib${n}${v} lib${n}-devel"
+	declare lib${n}${v}_CONTENTS="usr/bin/cyg${n}-${v}.dll"
+	declare lib${n}_devel_CONTENTS="usr/include/lib${n}/
+	                                usr/lib/lib${n}.*
+	                                usr/lib/pkgconfig/lib${n}.pc"
 done
+
+unset i n name v vers
 
 src_compile() {
 	cd ${B}
@@ -31,13 +37,14 @@ src_compile() {
 		--enable-gpl \
 		--enable-postproc --enable-swscale --enable-avfilter \
 		--enable-pthreads --enable-x11grab \
-		--enable-liba52 \
 		--enable-libdirac \
 		--enable-libfaac --enable-libfaad \
 		--enable-libgsm \
 		--enable-libmp3lame \
 		--enable-libnut \
+		--enable-libopenjpeg \
 		--enable-libschroedinger \
+		--enable-libspeex \
 		--enable-libtheora --enable-libvorbis \
 		--enable-libx264 \
 		--enable-libxvid \

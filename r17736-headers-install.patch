@@ -1,0 +1,13 @@
+FIXME: is this still necessary?
+
+--- origsrc/ffmpeg/libavformat/Makefile	2009-03-02 14:05:34.000000000 -0600
++++ src/ffmpeg/libavformat/Makefile	2009-03-02 14:09:11.546875000 -0600
+@@ -3,7 +3,7 @@ include $(SUBDIR)../config.mak
+ NAME = avformat
+ FFLIBS = avcodec avutil
+ 
+-HEADERS = avformat.h avio.h
++HEADERS = avformat.h avi.h avio.h riff.h
+ 
+ OBJS = allformats.o cutils.o metadata.o metadata_compat.o options.o os_support.o sdp.o utils.o
+ 

@@ -5,31 +5,32 @@ video. It includes libavcodec, the leading audio/video codec library.
 
 Runtime requirements:
   cygwin-1.5.25-15
-  libSDL12-1.2.13-1
-  liba52_0-0.7.4-2
-  libdirac10-0.10.0-1
-  libfaac0-1.26-1
-  libfaad0-2.6.1-2
-  libfreetype26-2.3.6-1
+  libdirac0-1.0.2-1
+  libfaac0-1.28-1
+  libfaad2-2.7-1
+  libfreetype6-2.3.8-1
   libgsm0-1.0.12-1
-  libimlib2-1.4.0-1
+  libimlib2-1.4.2-1
   libmp3lame0-3.97-1
-  libnut0-658-1
-  libschroedinger1.0_0-1.0.3-1
-  libtheora0-1.0beta3-1
+  libnut0-661-1
+  libopenjpeg2-1.3-1
+  libschroedinger1.0_0-1.0.5-1
+  libSDL1.2_0-1.2.13-2
+  libspeex1-1.2rc1-1
+  libtheora0-1.0-1
   libvorbis0-1.2.0-1
   libvorbisenc2-1.2.0-1
-  libx264_59-20080521-1
-  libxvidcore4-1.1.3-1
+  libx264_66-20090301-1
+  libxvidcore4-1.2.1-1
   zlib-1.2.3-2
 
 Build requirements:
 (besides corresponding devel packages)
-  binutils-20080523-1
-  cygport-0.3.11-1
+  binutils-20080624-2
+  cygport-0.4.3-1
   gcc-core-3.4.4-3
-  make-3.81-1
-  perl-5.10.0-4
+  make-3.81-2
+  perl-5.10.0-5
   sed-4.1.5-2
 
 Canonical website:
@@ -38,23 +39,29 @@ Canonical website:
 -------------------------------------------
 
 Build instructions:
-  unpack ffmpeg-13777-X-src.tar.bz2
+  unpack ffmpeg-17736-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./ffmpeg-13777-X.cygport all
+  cygport ./ffmpeg-17736-X.cygport all
 
 This will create:
-  /usr/src/ffmpeg-13777-X-src.tar.bz2
-  /usr/src/ffmpeg-13777-X.tar.bz2
-  /usr/src/ffmpeg-devel-13777-X.tar.bz2
-  /usr/src/libavcodec51-13777-X.tar.bz2
-  /usr/src/libavdevice52-13777-X.tar.bz2
-  /usr/src/libavfilter0-13777-X.tar.bz2
-  /usr/src/libavformat52-13777-X.tar.bz2
-  /usr/src/libavutil49-13777-X.tar.bz2
-  /usr/src/libpostproc51-13777-X.tar.bz2
-  /usr/src/libswscale0-13777-X.tar.bz2
+  /usr/src/ffmpeg-17736-X-src.tar.bz2
+  /usr/src/ffmpeg-17736-X.tar.bz2
+  /usr/src/libavcodec-devel-17736-X.tar.bz2
+  /usr/src/libavcodec52-17736-X.tar.bz2
+  /usr/src/libavdevice-devel-17736-X.tar.bz2
+  /usr/src/libavdevice52-17736-X.tar.bz2
+  /usr/src/libavfilter-devel-17736-X.tar.bz2
+  /usr/src/libavfilter0-17736-X.tar.bz2
+  /usr/src/libavformat-devel-17736-X.tar.bz2
+  /usr/src/libavformat52-17736-X.tar.bz2
+  /usr/src/libavutil-devel-17736-X.tar.bz2
+  /usr/src/libavutil49-17736-X.tar.bz2
+  /usr/src/libpostproc-devel-17736-X.tar.bz2
+  /usr/src/libpostproc51-17736-X.tar.bz2
+  /usr/src/libswscale-devel-17736-X.tar.bz2
+  /usr/src/libswscale0-17736-X.tar.bz2
 
 -------------------------------------------
 
@@ -70,18 +77,33 @@ Files included in the binary packages:
   /usr/lib/vhook/null.dll
   /usr/lib/vhook/ppm.dll
   /usr/lib/vhook/watermark.dll
-  /usr/share/doc/ffmpeg-13777/COPYING
-  /usr/share/doc/ffmpeg-13777/CREDITS
-  /usr/share/doc/ffmpeg-13777/ChangeLog
-  /usr/share/doc/ffmpeg-13777/INSTALL
-  /usr/share/doc/ffmpeg-13777/MAINTAINERS
-  /usr/share/doc/ffmpeg-13777/README
+  /usr/share/doc/ffmpeg-17736/CREDITS
+  /usr/share/doc/ffmpeg-17736/ChangeLog
+  /usr/share/doc/ffmpeg-17736/INSTALL
+  /usr/share/doc/ffmpeg-17736/MAINTAINERS
+  /usr/share/doc/ffmpeg-17736/README
+  /usr/share/ffmpeg/libx264-baseline.ffpreset
+  /usr/share/ffmpeg/libx264-default.ffpreset
+  /usr/share/ffmpeg/libx264-fastfirstpass.ffpreset
+  /usr/share/ffmpeg/libx264-hq.ffpreset
+  /usr/share/ffmpeg/libx264-ipod320.ffpreset
+  /usr/share/ffmpeg/libx264-ipod640.ffpreset
+  /usr/share/ffmpeg/libx264-lossless_fast.ffpreset
+  /usr/share/ffmpeg/libx264-lossless_max.ffpreset
+  /usr/share/ffmpeg/libx264-lossless_medium.ffpreset
+  /usr/share/ffmpeg/libx264-lossless_slow.ffpreset
+  /usr/share/ffmpeg/libx264-lossless_slower.ffpreset
+  /usr/share/ffmpeg/libx264-lossless_ultrafast.ffpreset
+  /usr/share/ffmpeg/libx264-main.ffpreset
+  /usr/share/ffmpeg/libx264-max.ffpreset
+  /usr/share/ffmpeg/libx264-normal.ffpreset
+  /usr/share/ffmpeg/libx264-slowfirstpass.ffpreset
   /usr/share/man/man1/ffmpeg.1.gz
   /usr/share/man/man1/ffplay.1.gz
   /usr/share/man/man1/ffserver.1.gz
 
-(libavcodec51)
-  /usr/bin/cygavcodec-51.dll
+(libavcodec52)
+  /usr/bin/cygavcodec-52.dll
 
 (libavdevice52)
   /usr/bin/cygavdevice-52.dll
@@ -104,6 +126,8 @@ Files included in the binary packages:
 (libavcodec-devel)
   /usr/include/libavcodec/avcodec.h
   /usr/include/libavcodec/opt.h
+  /usr/include/libavcodec/vdpau.h
+  /usr/include/libavcodec/xvmc.h
   /usr/lib/libavcodec.dll.a
   /usr/lib/pkgconfig/libavcodec.pc
 
@@ -122,8 +146,6 @@ Files included in the binary packages:
   /usr/include/libavformat/avi.h
   /usr/include/libavformat/avio.h
   /usr/include/libavformat/riff.h
-  /usr/include/libavformat/rtsp.h
-  /usr/include/libavformat/rtspcodes.h
   /usr/lib/libavformat.dll.a
   /usr/lib/pkgconfig/libavformat.pc
 
@@ -132,17 +154,16 @@ Files included in the binary packages:
   /usr/include/libavutil/avstring.h
   /usr/include/libavutil/avutil.h
   /usr/include/libavutil/base64.h
-  /usr/include/libavutil/bswap.h
   /usr/include/libavutil/common.h
   /usr/include/libavutil/crc.h
   /usr/include/libavutil/fifo.h
   /usr/include/libavutil/intfloat_readwrite.h
-  /usr/include/libavutil/intreadwrite.h
   /usr/include/libavutil/log.h
   /usr/include/libavutil/lzo.h
   /usr/include/libavutil/mathematics.h
   /usr/include/libavutil/md5.h
   /usr/include/libavutil/mem.h
+  /usr/include/libavutil/pixfmt.h
   /usr/include/libavutil/random.h
   /usr/include/libavutil/rational.h
   /usr/include/libavutil/sha1.h
@@ -155,7 +176,6 @@ Files included in the binary packages:
   /usr/lib/pkgconfig/libpostproc.pc
 
 (libswscale-devel)
-  /usr/include/libswscale/rgb2rgb.h
   /usr/include/libswscale/swscale.h
   /usr/lib/libswscale.dll.a
   /usr/lib/pkgconfig/libswscale.pc
@@ -163,6 +183,9 @@ Files included in the binary packages:
 ------------------
 
 Port Notes:
+
+----- version 17736-1 -----
+Version bump.
 
 ----- version 13777-1 -----
 Version bump.
