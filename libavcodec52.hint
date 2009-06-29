@@ -1,5 +1,5 @@
 category: Audio Video
-requires: cygwin libavutil49 libdirac0 libfaac0 libfaad2 libgsm0 libmp3lame0 libopenjpeg2 libschroedinger1.0_0 libspeex1 libtheora0 libvorbis0 libvorbisenc2 libx264_66 libxvidcore4 zlib
+requires: libavutil49 libdirac0 libfaac0 libfaad2 libgsm0 libmp3lame0 libopenjpeg2 libschroedinger1.0_0 libspeex1 libtheora0 libvorbis0 libvorbisenc2 libx264_66 libxvidcore4 zlib
 external-source: ffmpeg
 sdesc: "FFmpeg audio and video interpreter (libavcodec)"
 ldesc: "FFmpeg is a complete solution to record, convert and stream 

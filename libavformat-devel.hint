@@ -1,5 +1,5 @@
 category: Audio Video
-requires: cygwin libavformat52 libavcodec-devel libavutil-devel libbz2-devel libnut-devel zlib
+requires: libavformat52 libavcodec-devel libavutil-devel libbz2-devel libnut-devel zlib
 external-source: ffmpeg
 sdesc: "FFmpeg audio and video interpreter (libavformat)"
 ldesc: "FFmpeg is a complete solution to record, convert and stream 
