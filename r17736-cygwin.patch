@@ -8,8 +8,8 @@
 +        SLIBNAME_WITH_VERSION='$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'
          SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'
 -        SHFLAGS='-shared -Wl,--enable-auto-image-base'
-+        SHFLAGS='-shared -Wl,--enable-auto-image-base -Wl,--out-implib,lib$(NAME).dll.a'
-+        SLIB_INSTALL_EXTRA_CMD='mkdir -p "$(LIBDIR)"; install -m 644 lib$(NAME).dll.a $(LIBDIR)/lib$(NAME).dll.a'
++        SHFLAGS='-shared -Wl,--enable-auto-image-base -Wl,--out-implib,lib$(NAME)/lib$(NAME).dll.a'
++        SLIB_INSTALL_EXTRA_CMD='mkdir -p "$(LIBDIR)"; install -m 644 lib$(NAME)/lib$(NAME).dll.a $(LIBDIR)/lib$(NAME).dll.a'
 +        LDCONFIG=""
          objformat="win32"
 -        enable dos_paths

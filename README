@@ -4,31 +4,33 @@ FFmpeg is a complete solution to record, convert and stream audio and
 video. It includes libavcodec, the leading audio/video codec library.
 
 Runtime requirements:
-  cygwin-1.5.25-15
-  libdirac0-1.0.2-1
-  libfaac0-1.28-1
-  libfaad2-2.7-1
-  libfreetype6-2.3.8-1
-  libgsm0-1.0.12-1
-  libimlib2-1.4.2-1
-  libmp3lame0-3.97-1
-  libnut0-661-1
-  libopenjpeg2-1.3-1
-  libschroedinger1.0_0-1.0.5-1
-  libSDL1.2_0-1.2.13-2
+  cygwin-1.7.0-50
+  libbz2_1-1.0.5-10
+  libdirac0-1.0.2-10
+  libfaac0-1.28-10
+  libfaad2-2.7-10
+  libgcc1-4.3.2-2
+  libgsm1-1.0.13-1
+  libmp3lame0-3.98.2-10
+  libnut0-661-10
+  libopenjpeg2-1.3-10
+  libschroedinger1.0_0-1.0.5-10
+  libSDL1.2_0-1.2.13-10
   libspeex1-1.2rc1-1
-  libtheora0-1.0-1
-  libvorbis0-1.2.0-1
-  libvorbisenc2-1.2.0-1
-  libx264_66-20090301-1
-  libxvidcore4-1.2.1-1
-  zlib-1.2.3-2
+  libtheora0-1.0-10
+  libvorbis0-1.2.0-2
+  libvorbisenc2-1.2.0-2
+  libX11_6-1.2-10
+  libx264_68-20090712-1
+  libXext6-1.0.5-10
+  libxvidcore4-1.2.1-10
+  zlib0-1.2.3-10
 
 Build requirements:
 (besides corresponding devel packages)
   binutils-20080624-2
-  cygport-0.4.3-1
-  gcc-core-3.4.4-3
+  cygport-0.9.7-1
+  gcc4-core-4.3.2-2
   make-3.81-2
   perl-5.10.0-5
   sed-4.1.5-2
@@ -39,29 +41,29 @@ Canonical website:
 -------------------------------------------
 
 Build instructions:
-  unpack ffmpeg-17736-X-src.tar.bz2
+  unpack ffmpeg-0.5-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./ffmpeg-17736-X.cygport all
+  cygport ./ffmpeg-0.5-X.cygport all
 
 This will create:
-  /usr/src/ffmpeg-17736-X-src.tar.bz2
-  /usr/src/ffmpeg-17736-X.tar.bz2
-  /usr/src/libavcodec-devel-17736-X.tar.bz2
-  /usr/src/libavcodec52-17736-X.tar.bz2
-  /usr/src/libavdevice-devel-17736-X.tar.bz2
-  /usr/src/libavdevice52-17736-X.tar.bz2
-  /usr/src/libavfilter-devel-17736-X.tar.bz2
-  /usr/src/libavfilter0-17736-X.tar.bz2
-  /usr/src/libavformat-devel-17736-X.tar.bz2
-  /usr/src/libavformat52-17736-X.tar.bz2
-  /usr/src/libavutil-devel-17736-X.tar.bz2
-  /usr/src/libavutil49-17736-X.tar.bz2
-  /usr/src/libpostproc-devel-17736-X.tar.bz2
-  /usr/src/libpostproc51-17736-X.tar.bz2
-  /usr/src/libswscale-devel-17736-X.tar.bz2
-  /usr/src/libswscale0-17736-X.tar.bz2
+  /usr/src/ffmpeg-0.5-X-src.tar.bz2
+  /usr/src/ffmpeg-0.5-X.tar.bz2
+  /usr/src/libavcodec-devel-0.5-X.tar.bz2
+  /usr/src/libavcodec52-0.5-X.tar.bz2
+  /usr/src/libavdevice-devel-0.5-X.tar.bz2
+  /usr/src/libavdevice52-0.5-X.tar.bz2
+  /usr/src/libavfilter-devel-0.5-X.tar.bz2
+  /usr/src/libavfilter0-0.5-X.tar.bz2
+  /usr/src/libavformat-devel-0.5-X.tar.bz2
+  /usr/src/libavformat52-0.5-X.tar.bz2
+  /usr/src/libavutil-devel-0.5-X.tar.bz2
+  /usr/src/libavutil49-0.5-X.tar.bz2
+  /usr/src/libpostproc-devel-0.5-X.tar.bz2
+  /usr/src/libpostproc51-0.5-X.tar.bz2
+  /usr/src/libswscale-devel-0.5-X.tar.bz2
+  /usr/src/libswscale0-0.5-X.tar.bz2
 
 -------------------------------------------
 
@@ -71,17 +73,11 @@ Files included in the binary packages:
   /usr/bin/ffmpeg.exe
   /usr/bin/ffplay.exe
   /usr/bin/ffserver.exe
-  /usr/lib/vhook/drawtext.dll
-  /usr/lib/vhook/fish.dll
-  /usr/lib/vhook/imlib2.dll
-  /usr/lib/vhook/null.dll
-  /usr/lib/vhook/ppm.dll
-  /usr/lib/vhook/watermark.dll
-  /usr/share/doc/ffmpeg-17736/CREDITS
-  /usr/share/doc/ffmpeg-17736/ChangeLog
-  /usr/share/doc/ffmpeg-17736/INSTALL
-  /usr/share/doc/ffmpeg-17736/MAINTAINERS
-  /usr/share/doc/ffmpeg-17736/README
+  /usr/share/doc/ffmpeg/CREDITS
+  /usr/share/doc/ffmpeg/ChangeLog
+  /usr/share/doc/ffmpeg/INSTALL
+  /usr/share/doc/ffmpeg/MAINTAINERS
+  /usr/share/doc/ffmpeg/README
   /usr/share/ffmpeg/libx264-baseline.ffpreset
   /usr/share/ffmpeg/libx264-default.ffpreset
   /usr/share/ffmpeg/libx264-fastfirstpass.ffpreset
@@ -143,9 +139,7 @@ Files included in the binary packages:
 
 (libavformat-devel)
   /usr/include/libavformat/avformat.h
-  /usr/include/libavformat/avi.h
   /usr/include/libavformat/avio.h
-  /usr/include/libavformat/riff.h
   /usr/lib/libavformat.dll.a
   /usr/lib/pkgconfig/libavformat.pc
 
@@ -184,46 +178,8 @@ Files included in the binary packages:
 
 Port Notes:
 
------ version 17736-1 -----
-Version bump.
-
------ version 13777-1 -----
-Version bump.
-Added schroedinger support.
-Reorganized devel packages.
-
------ version 13270-1 -----
-Updated SVN snapshot with new libraries and ABI version bumps.
-
------ version 10755-2 -----
-Install some headers required by MPlayer.
-
------ version 10755-1 -----
-Updated SVN snapshot.
-
------ version 10270-1 -----
-Updated SVN snapshot.
-
------ version 9958-1 -----
-Updated SVN snapshot.  Re-added libswscale.
-libdts dependency removed upstream.
-
------ version 20070413-1 -----
-Updated SVN snapshot.  Added libnut dependency.
-Enabling libswscaler disables img_convert and img_resample functions 
-requires by various multimedia programs, while nothing uses swscaler 
-(yet); therefore disabled swscaler instead.
-
------ version 20070306-1 -----
-New SVN snapshot.
-Added a52 and x264 dependencies.
-Export img_convert function.
-
------ version 20070127-1 -----
-Updated to current SVN snapshot, built with cygport.
-
------ version 0.4.9_pre1-1 -----
-Initial release for Cygwin.
+----- version 0.5-1 -----
+Initial release for Cygwin 1.7.
 
 
 Cygwin port maintained by:
