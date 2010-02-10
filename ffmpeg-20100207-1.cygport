@@ -1,18 +1,17 @@
+SVN_URI="svn://svn.mplayerhq.hu/ffmpeg"
+SVN_BRANCH="trunk"
+SVN_DATE=$((PV + 1))
+inherit svn
+
 DESCRIPTION="FFmpeg Audio/video codecs library"
 HOMEPAGE="http://ffmpeg.org/"
-SRC_URI="http://ffmpeg.org/releases/${P}.tar.bz2"
-#SVN_URI="svn://svn.mplayerhq.hu/ffmpeg"
-#SVN_REV=${PV}
-#inherit svn
 
-PATCH_URI="r17736-cygwin.patch"
-#           r17736-headers-install.patch
-#           r17736-vhook-install.patch"
+PATCH_URI="21666-cygwin.patch"
 
 PKG_NAMES="${PN}"
 ffmpeg_CONTENTS='--exclude=html usr/bin/*.exe usr/share/'
 
-for l in avcodec:52 avdevice:52 avfilter:0 avformat:52 avutil:49 postproc:51 swscale:0
+for l in avcodec:52 avdevice:52 avfilter:1 avformat:52 avutil:50 postproc:51 swscale:0
 do
 	n=${l%:*}
 	v=${l##*:}
@@ -36,22 +35,22 @@ src_compile() {
 		--prefix=/usr --libdir=/usr/lib --shlibdir=/usr/bin \
 		--incdir=/usr/include --mandir=/usr/share/man \
 		--enable-static --enable-shared \
-		--enable-gpl \
+		--enable-gpl --enable-version3 \
 		--enable-postproc --enable-swscale --enable-avfilter \
 		--enable-pthreads \
 		--enable-libdirac \
-		--enable-libfaac --enable-libfaad \
+		--enable-libfaad \
 		--enable-libgsm \
 		--enable-libmp3lame \
 		--enable-libnut \
+		--enable-libopencore-amrnb \
+		--enable-libopencore-amrwb \
 		--enable-libopenjpeg \
 		--enable-libschroedinger \
 		--enable-libspeex \
 		--enable-libtheora --enable-libvorbis \
 		--enable-libx264 \
 		--enable-libxvid \
-		--disable-libamr-nb \
-		--disable-libamr-wb \
 		--disable-libdc1394 \
 		--enable-x11grab \
 		--disable-debug \
@@ -70,7 +69,6 @@ src_compile() {
 		--disable-iwmmxt \
 		--disable-mmi \
 		--disable-stripping \
-		--disable-vhook \
 		|| error "configure failed"
 	# workaround bug in parallel make
 	cygmake version.h

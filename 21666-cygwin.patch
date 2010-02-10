@@ -1,7 +1,7 @@
---- origsrc/ffmpeg/configure	2009-03-02 14:05:36.000000000 -0600
-+++ src/ffmpeg/configure	2009-03-02 14:14:27.062500000 -0600
-@@ -1591,11 +1591,12 @@ case $target_os in
-         fi
+--- origsrc/ffmpeg/configure	2010-02-07 05:29:28.000000000 -0600
++++ src/ffmpeg/configure	2010-02-07 05:31:37.414359000 -0600
+@@ -2169,11 +2169,12 @@ case $target_os in
+         shlibdir_default="$bindir_default"
          SLIBPREF="cyg"
          SLIBSUF=".dll"
 -        SLIBNAME_WITH_VERSION='$(SLIBPREF)$(FULLNAME)-$(LIBVERSION)$(SLIBSUF)'
@@ -13,23 +13,14 @@
 +        LDCONFIG=""
          objformat="win32"
 -        enable dos_paths
+         check_cflags -fno-common
          ;;
      *-dos|freedos|opendos)
-         disable ffplay ffserver vhook
-@@ -2430,7 +2431,7 @@ get_version LIBAVFILTER libavfilter/avfi
- 
- if enabled shared; then
-     echo "BUILD_SHARED=yes" >> config.mak
--    echo "PIC=-fPIC -DPIC" >> config.mak
-+    echo "PIC=-DPIC -DDLL_EXPORT" >> config.mak
-     echo "LIBTARGET=${LIBTARGET}" >> config.mak
-     echo "SLIBNAME=${SLIBNAME}" >> config.mak
-     echo "SLIBNAME_WITH_VERSION=${SLIBNAME_WITH_VERSION}" >> config.mak
---- origsrc/ffmpeg/subdir.mak	2009-03-02 14:05:36.000000000 -0600
-+++ src/ffmpeg/subdir.mak	2009-03-02 14:14:52.390625000 -0600
-@@ -41,10 +41,12 @@ install-lib$(NAME)-shared: $(SUBDIR)$(SL
+--- origsrc/ffmpeg/subdir.mak	2010-02-07 05:29:28.000000000 -0600
++++ src/ffmpeg/subdir.mak	2010-02-07 05:31:37.423359500 -0600
+@@ -65,10 +65,12 @@ install-lib$(NAME)-shared: $(SUBDIR)$(SL
  	install -d "$(SHLIBDIR)"
- 	install -m 755 $(SUBDIR)$(SLIBNAME) "$(SHLIBDIR)/$(SLIBNAME_WITH_VERSION)"
+ 	install -m 755 $$< "$(SHLIBDIR)/$(SLIBNAME_WITH_VERSION)"
  	$(STRIP) "$(SHLIBDIR)/$(SLIBNAME_WITH_VERSION)"
 +ifneq ($(OS), Windows_NT)
  	cd "$(SHLIBDIR)" && \

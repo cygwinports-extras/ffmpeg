@@ -1,5 +1,5 @@
 category: Audio Video
-requires: libavformat52 libavutil49 libgcc1 libX11_6 libXext6
+requires: libavcodec52 libavformat52 libavutil50 libgcc1 libX11_6 libXext6 libXfixes3
 external-source: ffmpeg
 sdesc: "FFmpeg audio and video interpreter (libavdevice)"
 ldesc: "FFmpeg is a complete solution to record, convert and stream 
