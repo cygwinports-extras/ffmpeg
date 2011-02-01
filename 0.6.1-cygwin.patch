@@ -1,6 +1,6 @@
 --- origsrc/ffmpeg/configure	2010-02-07 05:29:28.000000000 -0600
 +++ src/ffmpeg/configure	2010-02-07 05:31:37.414359000 -0600
-@@ -2169,11 +2169,12 @@ case $target_os in
+@@ -2239,11 +2239,12 @@ case $target_os in
          shlibdir_default="$bindir_default"
          SLIBPREF="cyg"
          SLIBSUF=".dll"
@@ -18,14 +18,14 @@
      *-dos|freedos|opendos)
 --- origsrc/ffmpeg/subdir.mak	2010-02-07 05:29:28.000000000 -0600
 +++ src/ffmpeg/subdir.mak	2010-02-07 05:31:37.423359500 -0600
-@@ -65,10 +65,12 @@ install-lib$(NAME)-shared: $(SUBDIR)$(SL
- 	install -d "$(SHLIBDIR)"
- 	install -m 755 $$< "$(SHLIBDIR)/$(SLIBNAME_WITH_VERSION)"
- 	$(STRIP) "$(SHLIBDIR)/$(SLIBNAME_WITH_VERSION)"
+@@ -61,10 +61,12 @@ install-lib$(NAME)-shared: $(SUBDIR)$(SL
+ 	$(Q)mkdir -p "$(SHLIBDIR)"
+ 	$$(INSTALL) -m 755 $$< "$(SHLIBDIR)/$(SLIBNAME_WITH_VERSION)"
+ 	$$(STRIP) "$(SHLIBDIR)/$(SLIBNAME_WITH_VERSION)"
 +ifneq ($(OS), Windows_NT)
- 	cd "$(SHLIBDIR)" && \
+ 	$(Q)cd "$(SHLIBDIR)" && \
  		$(LN_S) $(SLIBNAME_WITH_VERSION) $(SLIBNAME_WITH_MAJOR)
- 	cd "$(SHLIBDIR)" && \
+ 	$(Q)cd "$(SHLIBDIR)" && \
  		$(LN_S) $(SLIBNAME_WITH_VERSION) $(SLIBNAME)
 +endif
  	$(SLIB_INSTALL_EXTRA_CMD)

@@ -1,0 +1,13 @@
+--- origsrc/ffmpeg-0.6.1/libavutil/bswap.h	2010-05-20 17:45:00.000000000 -0500
++++ src/ffmpeg-0.6.1/libavutil/bswap.h	2011-02-01 03:01:38.275805400 -0600
+@@ -38,6 +38,10 @@
+ #   include "bfin/bswap.h"
+ #elif ARCH_SH4
+ #   include "sh4/bswap.h"
++#elif defined(__CYGWIN__)
++#   define bswap_16 bswap_16
++#   define bswap_32 bswap_32
++#   define bswap_64 bswap_64
+ #elif ARCH_X86
+ #   include "x86/bswap.h"
+ #endif

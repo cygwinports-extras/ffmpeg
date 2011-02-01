@@ -1,12 +1,20 @@
-SVN_URI="svn://svn.mplayerhq.hu/ffmpeg"
-SVN_BRANCH="trunk"
-SVN_DATE=$((PV + 1))
-inherit svn
+case ${PN} in
+20??????)
+	SVN_URI="svn://svn.mplayerhq.hu/ffmpeg"
+	SVN_BRANCH="trunk"
+	SVN_DATE=$((PV + 1))
+	inherit svn
+	;;
+*)	SRC_URI="http://ffmpeg.org/releases/${P}.tar.bz2" ;;
+esac
 
 DESCRIPTION="FFmpeg Audio/video codecs library"
 HOMEPAGE="http://ffmpeg.org/"
 
-PATCH_URI="21666-cygwin.patch"
+PATCH_URI="
+	0.6.1-cygwin.patch
+	0.6.1-bswap.patch
+"
 
 PKG_NAMES="${PN}"
 ffmpeg_CONTENTS='--exclude=html usr/bin/*.exe usr/share/'
@@ -26,10 +34,8 @@ unset l n v
 
 src_compile() {
 	cd ${B}
-	# -fno-common: http://gcc.gnu.org/bugzilla/show_bug.cgi?id=37216
 	# -fomit-frame-pointer: http://lists.mplayerhq.hu/pipermail/mplayer-dev-eng/2006-November/047222.html
-	# -freorder-functions: http://cygwin.com/ml/cygwin/2009-07/msg00468.html
-	CFLAGS+=" -O3 -fno-common -fno-reorder-functions -fomit-frame-pointer"
+	CFLAGS+=" -O3 -fomit-frame-pointer"
 	${S}/configure \
 		--source-path=${S} \
 		--prefix=/usr --libdir=/usr/lib --shlibdir=/usr/bin \
@@ -46,9 +52,11 @@ src_compile() {
 		--enable-libopencore-amrnb \
 		--enable-libopencore-amrwb \
 		--enable-libopenjpeg \
+		--enable-librtmp \
 		--enable-libschroedinger \
 		--enable-libspeex \
 		--enable-libtheora --enable-libvorbis \
+		--enable-libvpx \
 		--enable-libx264 \
 		--enable-libxvid \
 		--disable-libdc1394 \
@@ -56,8 +64,6 @@ src_compile() {
 		--disable-debug \
 		--disable-optimizations \
 		--enable-yasm \
-		--enable-mmx \
-		--disable-mmx2 \
 		--disable-ssse3 \
 		--disable-altivec \
 		--disable-amd3dnow \
@@ -72,5 +78,5 @@ src_compile() {
 		|| error "configure failed"
 	# workaround bug in parallel make
 	cygmake version.h
-	cygmake CC="${CC}"
+	cygmake # CC="${CC}"
 }
