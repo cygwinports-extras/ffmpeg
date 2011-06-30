@@ -1,15 +1,6 @@
-case ${PN} in
-20??????)
-	SVN_URI="svn://svn.mplayerhq.hu/ffmpeg"
-	SVN_BRANCH="trunk"
-	SVN_DATE=$((PV + 1))
-	inherit svn
-	;;
-*)	SRC_URI="http://ffmpeg.org/releases/${P}.tar.bz2" ;;
-esac
-
 DESCRIPTION="FFmpeg Audio/video codecs library"
 HOMEPAGE="http://ffmpeg.org/"
+SRC_URI="http://ffmpeg.org/releases/${P}.tar.bz2"
 
 PATCH_URI="
 	0.6.1-cygwin.patch
