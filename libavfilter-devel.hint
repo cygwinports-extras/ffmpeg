@@ -1,5 +1,5 @@
 category: Audio Video
-requires: libavfilter1 libavcodec-devel libavutil-devel libswscale-devel
+requires: libavfilter1 libavcodec-devel libavformat-devel libavutil-devel libcv-devel libswscale-devel
 external-source: ffmpeg
 sdesc: "FFmpeg audio and video interpreter (libavfilter)"
 ldesc: "FFmpeg is a complete solution to record, convert and stream 
