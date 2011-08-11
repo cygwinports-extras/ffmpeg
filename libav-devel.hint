@@ -1,0 +1,7 @@
+category: Audio Video
+requires: libavcodec52 libavdevice52 libavfilter1 libavformat52 libavutil50 libpostproc51 libswscale0 libbz2-devel libcelt-devel libdirac-devel libgsm-devel libmp3lame-devel libnut-devel libopencore-amrnb-devel libopencore-amrwb-devel libopencv-devel libopenjpeg-devel librtmp-devel libschroedinger1.0-devel libSDL-devel speex-devel libtheora-devel libvorbis-devel libvpx-devel libX11-devel libx264-devel libXext-devel libXfixes-devel libxvidcore-devel zlib-devel
+external-source: ffmpeg
+sdesc: "FFmpeg audio and video interpreter (library development)"
+ldesc: "FFmpeg is a complete solution to record, convert and stream 
+audio and video. It includes libavcodec, the leading audio/video codec 
+library."

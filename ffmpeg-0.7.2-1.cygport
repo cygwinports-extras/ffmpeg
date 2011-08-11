@@ -7,21 +7,17 @@ PATCH_URI="
 	0.6.1-bswap.patch
 "
 
-PKG_NAMES="${PN}"
+PKG_NAMES="${PN} libav-devel libavcodec52 libavdevice52 libavfilter1
+           libavformat52 libavutil50 libpostproc51 libswscale0"
 ffmpeg_CONTENTS='--exclude=html usr/bin/*.exe usr/share/'
-
-for l in avcodec:52 avdevice:52 avfilter:1 avformat:52 avutil:50 postproc:51 swscale:0
-do
-	n=${l%:*}
-	v=${l##*:}
-	PKG_NAMES+=" lib${n}${v} lib${n}-devel"
-	declare lib${n}${v}_CONTENTS="usr/bin/cyg${n}-${v}.dll"
-	declare lib${n}_devel_CONTENTS="usr/include/lib${n}/
-	                                usr/lib/lib${n}.*
-	                                usr/lib/pkgconfig/lib${n}.pc"
-done
-
-unset l n v
+libav_devel_CONTENTS="usr/include/ usr/lib/"
+libavcodec52_CONTENTS="usr/bin/cygavcodec-52.dll"
+libavdevice52_CONTENTS="usr/bin/cygavdevice-52.dll"
+libavfilter1_CONTENTS="usr/bin/cygavfilter-1.dll"
+libavformat52_CONTENTS="usr/bin/cygavformat-52.dll"
+libavutil50_CONTENTS="usr/bin/cygavutil-50.dll"
+libpostproc51_CONTENTS="usr/bin/cygpostproc-51.dll"
+libswscale0_CONTENTS="usr/bin/cygswscale-0.dll"
 
 src_compile() {
 	cd ${B}

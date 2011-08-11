@@ -1,7 +1,0 @@
-category: Audio Video
-requires: libavformat52 libavcodec-devel libavutil-devel libbz2-devel libnut-devel librtmp-devel zlib-devel
-external-source: ffmpeg
-sdesc: "FFmpeg audio and video interpreter (libavformat)"
-ldesc: "FFmpeg is a complete solution to record, convert and stream 
-audio and video. It includes libavcodec, the leading audio/video codec 
-library."
