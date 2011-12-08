@@ -33,6 +33,7 @@ src_compile() {
 		--enable-frei0r \
 		--enable-libcelt \
 		--enable-libdirac \
+		--enable-libfreetype \
 		--enable-libgsm \
 		--enable-libmp3lame \
 		--enable-libnut \
@@ -44,6 +45,8 @@ src_compile() {
 		--enable-libschroedinger \
 		--enable-libspeex \
 		--enable-libtheora --enable-libvorbis \
+		--enable-libvo-aacenc \
+		--enable-libvo-amrwbenc \
 		--enable-libvpx \
 		--enable-libx264 \
 		--enable-libxvid \
@@ -66,5 +69,12 @@ src_compile() {
 		|| error "configure failed"
 	# workaround bug in parallel make
 	cygmake version.h
-	cygmake # CC="${CC}"
+	cygmake all
+	cygmake alltools
+}
+
+src_install() {
+	cd ${B}
+	cyginstall
+	dobin tools/qt-faststart.exe
 }
