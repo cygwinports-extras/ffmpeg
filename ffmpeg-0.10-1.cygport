@@ -1,23 +1,20 @@
 DESCRIPTION="FFmpeg Audio/video codecs library"
 HOMEPAGE="http://ffmpeg.org/"
 SRC_URI="http://ffmpeg.org/releases/${P}.tar.bz2"
+PATCH_URI="0.10-cygwin.patch"
 
-PATCH_URI="
-	0.6.1-cygwin.patch
-	0.6.1-bswap.patch
-"
-
-PKG_NAMES="${PN} libav-devel libavcodec52 libavdevice52 libavfilter1
-           libavformat52 libavutil50 libpostproc51 libswscale0"
+PKG_NAMES="${PN} libav-devel libavcodec53 libavdevice53 libavfilter2
+           libavformat53 libavutil51 libpostproc52 libswresample0 libswscale2"
 ffmpeg_CONTENTS='--exclude=html usr/bin/*.exe usr/share/'
 libav_devel_CONTENTS="usr/include/ usr/lib/"
-libavcodec52_CONTENTS="usr/bin/cygavcodec-52.dll"
-libavdevice52_CONTENTS="usr/bin/cygavdevice-52.dll"
-libavfilter1_CONTENTS="usr/bin/cygavfilter-1.dll"
-libavformat52_CONTENTS="usr/bin/cygavformat-52.dll"
-libavutil50_CONTENTS="usr/bin/cygavutil-50.dll"
-libpostproc51_CONTENTS="usr/bin/cygpostproc-51.dll"
-libswscale0_CONTENTS="usr/bin/cygswscale-0.dll"
+libavcodec53_CONTENTS="usr/bin/cygavcodec-53.dll"
+libavdevice53_CONTENTS="usr/bin/cygavdevice-53.dll"
+libavfilter2_CONTENTS="usr/bin/cygavfilter-2.dll"
+libavformat53_CONTENTS="usr/bin/cygavformat-53.dll"
+libavutil51_CONTENTS="usr/bin/cygavutil-51.dll"
+libpostproc52_CONTENTS="usr/bin/cygpostproc-52.dll"
+libswresample0_CONTENTS="usr/bin/cygswresample-0.dll"
+libswscale2_CONTENTS="usr/bin/cygswscale-2.dll"
 
 src_compile() {
 	cd ${B}
@@ -26,21 +23,26 @@ src_compile() {
 	${S}/configure \
 		--prefix=/usr --libdir=/usr/lib --shlibdir=/usr/bin \
 		--incdir=/usr/include --mandir=/usr/share/man \
-		--enable-static --enable-shared \
+		--disable-static --enable-shared \
 		--enable-gpl --enable-version3 \
 		--enable-postproc --enable-swscale --enable-avfilter \
 		--enable-pthreads \
+		--enable-bzlib \
 		--enable-frei0r \
+		--enable-gnutls \
+		--enable-libass \
 		--enable-libcelt \
 		--enable-libdirac \
 		--enable-libfreetype \
 		--enable-libgsm \
+		--enable-libmodplug \
 		--enable-libmp3lame \
-		--enable-libnut \
+		--enable-libopenjpeg \
 		--enable-libopencore-amrnb \
 		--enable-libopencore-amrwb \
 		--enable-libopencv \
 		--enable-libopenjpeg \
+		--enable-libpulse \
 		--enable-librtmp \
 		--enable-libschroedinger \
 		--enable-libspeex \
@@ -49,9 +51,9 @@ src_compile() {
 		--enable-libvo-amrwbenc \
 		--enable-libvpx \
 		--enable-libx264 \
-		--enable-libxvid \
-		--disable-libdc1394 \
+		--enable-openal \
 		--enable-x11grab \
+		--enable-zlib \
 		--disable-debug \
 		--disable-optimizations \
 		--enable-yasm \
@@ -77,4 +79,6 @@ src_install() {
 	cd ${B}
 	cyginstall
 	dobin tools/qt-faststart.exe
+
+	sed -i -e '/^Libs.private/d' ${D}/usr/lib/pkgconfig/*
 }
