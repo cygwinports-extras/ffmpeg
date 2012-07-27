@@ -1,4 +1,8 @@
-DESCRIPTION="FFmpeg Audio/video codecs library"
+CATEGORY="Audio Video"
+SUMMARY="FFmpeg audio/video player and converter"
+DESCRIPTION="FFmpeg is a complete solution to record, convert and stream
+audio and video. It includes libavcodec, the leading audio/video codec
+library."
 HOMEPAGE="http://ffmpeg.org/"
 SRC_URI="http://ffmpeg.org/releases/${P}.tar.bz2"
 PATCH_URI="0.10-cygwin.patch"
@@ -6,14 +10,23 @@ PATCH_URI="0.10-cygwin.patch"
 PKG_NAMES="${PN} libav-devel libavcodec53 libavdevice53 libavfilter2
            libavformat53 libavutil51 libpostproc52 libswresample0 libswscale2"
 ffmpeg_CONTENTS='--exclude=html usr/bin/*.exe usr/share/'
+libav_devel_SUMMARY="FFmpeg audio/video libraries (development)"
 libav_devel_CONTENTS="usr/include/ usr/lib/"
+libavcodec53_SUMMARY="FFmpeg audio/video codec library"
 libavcodec53_CONTENTS="usr/bin/cygavcodec-53.dll"
+libavdevice53_SUMMARY="FFmpeg audio/video device library"
 libavdevice53_CONTENTS="usr/bin/cygavdevice-53.dll"
+libavfilter2_SUMMARY="FFmpeg audio/video filter library"
 libavfilter2_CONTENTS="usr/bin/cygavfilter-2.dll"
+libavformat53_SUMMARY="FFmpeg audio/video format library"
 libavformat53_CONTENTS="usr/bin/cygavformat-53.dll"
+libavutil51_SUMMARY="FFmpeg audio/video utility library"
 libavutil51_CONTENTS="usr/bin/cygavutil-51.dll"
+libpostproc52_SUMMARY="FFmpeg audio/video postprocessing library"
 libpostproc52_CONTENTS="usr/bin/cygpostproc-52.dll"
+libswresample0_SUMMARY="FFmpeg audio/video resampling library"
 libswresample0_CONTENTS="usr/bin/cygswresample-0.dll"
+libswscale2_SUMMARY="FFmpeg audio/video rescaling library"
 libswscale2_CONTENTS="usr/bin/cygswscale-2.dll"
 
 src_compile() {

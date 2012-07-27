@@ -1,6 +1,0 @@
-category: Audio Video
-requires: libavcodec53 libavdevice53 libavfilter2 libavformat53 libavutil51 libpostproc52 libswresample0 libswscale2 libSDL1.2_0
-sdesc: "FFmpeg audio and video interpreter (utilities)"
-ldesc: "FFmpeg is a complete solution to record, convert and stream
-audio and video. It includes libavcodec, the leading audio/video codec
-library."
