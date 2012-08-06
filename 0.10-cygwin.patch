@@ -1,16 +1,14 @@
 --- origsrc/ffmpeg-0.10/configure	2012-01-26 16:15:59.000000000 -0600
 +++ src/ffmpeg-0.10/configure	2012-02-11 23:39:08.418173600 -0600
-@@ -2687,9 +2687,13 @@ case $target_os in
+@@ -2687,9 +2687,11 @@ case $target_os in
          SLIBSUF=".dll"
          SLIBNAME_WITH_VERSION='$(SLIBPREF)$(FULLNAME)-$(LIBVERSION)$(SLIBSUF)'
          SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'
 -        SHFLAGS='-shared -Wl,--enable-auto-image-base'
 +        SLIB_INSTALL_NAME='$(SLIBNAME_WITH_MAJOR)'
 +        SLIB_INSTALL_LINKS=
-+        SLIB_INSTALL_EXTRA_SHLIB=
-+        SLIB_INSTALL_EXTRA_LIB='lib$(NAME).dll.a'
-+        SLIB_INSTALL_EXTRA_CMD='mkdir -p "$(LIBDIR)"; install -m 644 lib$(NAME)/lib$(NAME).dll.a $(LIBDIR)/lib$(NAME).dll.a'
-+        SHFLAGS='-shared -Wl,--out-implib,$(SUBDIR)lib$(NAME).dll.a'
++        SLIB_INSTALL_EXTRA_LIB='lib$(FULLNAME).dll.a'
++        SHFLAGS='-shared -Wl,--out-implib,$(SUBDIR)lib$(FULLNAME).dll.a'
          objformat="win32"
 -        enable dos_paths
          check_cflags -fno-common
