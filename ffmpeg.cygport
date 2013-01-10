@@ -1,6 +1,6 @@
 NAME="ffmpeg"
 VERSION=0.10.6
-RELEASE=1
+RELEASE=2
 CATEGORY="Audio Video"
 SUMMARY="FFmpeg audio/video player and converter"
 DESCRIPTION="FFmpeg is a complete solution to record, convert and stream
@@ -8,7 +8,8 @@ audio and video. It includes libavcodec, the leading audio/video codec
 library."
 HOMEPAGE="http://ffmpeg.org/"
 SRC_URI="http://ffmpeg.org/releases/${P}.tar.bz2"
-PATCH_URI="0.10-cygwin.patch"
+PATCH_URI="0.10-cygwin.patch
+           0.10-frei0r-so.patch"
 
 PKG_NAMES="${PN} libav-devel libavcodec53 libavdevice53 libavfilter2
            libavformat53 libavutil51 libpostproc52 libswresample0 libswscale2"
