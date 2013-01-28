@@ -1,29 +1,27 @@
 NAME="ffmpeg"
-VERSION=0.10.6
-RELEASE=2
+VERSION=1.0.3
+RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="FFmpeg audio/video player and converter"
-DESCRIPTION="FFmpeg is a complete solution to record, convert and stream
-audio and video. It includes libavcodec, the leading audio/video codec
-library."
+DESCRIPTION="FFmpeg is a complete solution to record, convert and stream audio
+and video. It includes libavcodec, the leading audio/video codec library."
 HOMEPAGE="http://ffmpeg.org/"
 SRC_URI="http://ffmpeg.org/releases/${P}.tar.bz2"
-PATCH_URI="0.10-cygwin.patch
-           0.10-frei0r-so.patch"
+PATCH_URI="0.10-frei0r-so.patch"
 
-PKG_NAMES="${PN} libav-devel libavcodec53 libavdevice53 libavfilter2
-           libavformat53 libavutil51 libpostproc52 libswresample0 libswscale2"
+PKG_NAMES="${PN} libav-devel libavcodec54 libavdevice54 libavfilter3
+           libavformat54 libavutil51 libpostproc52 libswresample0 libswscale2"
 ffmpeg_CONTENTS='--exclude=html usr/bin/*.exe usr/share/'
 libav_devel_SUMMARY="FFmpeg audio/video libraries (development)"
 libav_devel_CONTENTS="usr/include/ usr/lib/"
-libavcodec53_SUMMARY="FFmpeg audio/video codec library"
-libavcodec53_CONTENTS="usr/bin/cygavcodec-53.dll"
-libavdevice53_SUMMARY="FFmpeg audio/video device library"
-libavdevice53_CONTENTS="usr/bin/cygavdevice-53.dll"
-libavfilter2_SUMMARY="FFmpeg audio/video filter library"
-libavfilter2_CONTENTS="usr/bin/cygavfilter-2.dll"
-libavformat53_SUMMARY="FFmpeg audio/video format library"
-libavformat53_CONTENTS="usr/bin/cygavformat-53.dll"
+libavcodec54_SUMMARY="FFmpeg audio/video codec library"
+libavcodec54_CONTENTS="usr/bin/cygavcodec-54.dll"
+libavdevice54_SUMMARY="FFmpeg audio/video device library"
+libavdevice54_CONTENTS="usr/bin/cygavdevice-54.dll"
+libavfilter3_SUMMARY="FFmpeg audio/video filter library"
+libavfilter3_CONTENTS="usr/bin/cygavfilter-3.dll"
+libavformat54_SUMMARY="FFmpeg audio/video format library"
+libavformat54_CONTENTS="usr/bin/cygavformat-54.dll"
 libavutil51_SUMMARY="FFmpeg audio/video utility library"
 libavutil51_CONTENTS="usr/bin/cygavutil-51.dll"
 libpostproc52_SUMMARY="FFmpeg audio/video postprocessing library"
@@ -48,10 +46,12 @@ src_compile() {
 		--enable-frei0r \
 		--enable-gnutls \
 		--enable-libass \
+		--enable-libbluray \
+		--enable-libcdio \
 		--enable-libcelt \
-		--enable-libdirac \
 		--enable-libfreetype \
 		--enable-libgsm \
+		--enable-libilbc \
 		--enable-libmodplug \
 		--enable-libmp3lame \
 		--enable-libopenjpeg \
@@ -59,15 +59,20 @@ src_compile() {
 		--enable-libopencore-amrwb \
 		--enable-libopencv \
 		--enable-libopenjpeg \
+		--enable-libopus \
 		--enable-libpulse \
 		--enable-librtmp \
 		--enable-libschroedinger \
 		--enable-libspeex \
-		--enable-libtheora --enable-libvorbis \
+		--enable-libtheora \
+		--enable-libtwolame \
+		--disable-libutvideo \
 		--enable-libvo-aacenc \
 		--enable-libvo-amrwbenc \
+		--enable-libvorbis \
 		--enable-libvpx \
 		--enable-libx264 \
+		--disable-libxavs \
 		--enable-openal \
 		--enable-x11grab \
 		--enable-zlib \
@@ -82,7 +87,6 @@ src_compile() {
 		--disable-armv6 \
 		--disable-armv6t2 \
 		--disable-armvfp \
-		--disable-iwmmxt \
 		--disable-mmi \
 		--disable-stripping \
 		|| error "configure failed"
