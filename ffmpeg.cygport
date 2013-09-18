@@ -1,19 +1,22 @@
 NAME="ffmpeg"
-VERSION=1.0.6
+VERSION=1.2.3
 RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="FFmpeg audio/video player and converter"
 DESCRIPTION="FFmpeg is a complete solution to record, convert and stream audio
 and video. It includes libavcodec, the leading audio/video codec library."
 HOMEPAGE="http://ffmpeg.org/"
-SRC_URI="http://ffmpeg.org/releases/${P}.tar.bz2"
-PATCH_URI="0.10-frei0r-so.patch"
+SRC_URI="http://ffmpeg.org/releases/ffmpeg-${VERSION}.tar.bz2"
+PATCH_URI="
+	1.2-frei0r-so.patch
+	1.2-cygwin.patch
+"
 
-PKG_NAMES="${PN} libav-devel libavcodec54 libavdevice54 libavfilter3
-           libavformat54 libavutil51 libpostproc52 libswresample0 libswscale2"
-ffmpeg_CONTENTS='--exclude=html usr/bin/*.exe usr/share/'
+PKG_NAMES="ffmpeg libav-devel libavcodec54 libavdevice54 libavfilter3
+           libavformat54 libavutil52 libpostproc52 libswresample0 libswscale2"
+ffmpeg_CONTENTS='--exclude=html --exclude=man3 usr/bin/*.exe usr/share/'
 libav_devel_SUMMARY="FFmpeg audio/video libraries (development)"
-libav_devel_CONTENTS="usr/include/ usr/lib/"
+libav_devel_CONTENTS="usr/include/ usr/lib/ usr/share/man/man3/"
 libavcodec54_SUMMARY="FFmpeg audio/video codec library"
 libavcodec54_CONTENTS="usr/bin/cygavcodec-54.dll"
 libavdevice54_SUMMARY="FFmpeg audio/video device library"
@@ -22,8 +25,8 @@ libavfilter3_SUMMARY="FFmpeg audio/video filter library"
 libavfilter3_CONTENTS="usr/bin/cygavfilter-3.dll"
 libavformat54_SUMMARY="FFmpeg audio/video format library"
 libavformat54_CONTENTS="usr/bin/cygavformat-54.dll"
-libavutil51_SUMMARY="FFmpeg audio/video utility library"
-libavutil51_CONTENTS="usr/bin/cygavutil-51.dll"
+libavutil52_SUMMARY="FFmpeg audio/video utility library"
+libavutil52_CONTENTS="usr/bin/cygavutil-52.dll"
 libpostproc52_SUMMARY="FFmpeg audio/video postprocessing library"
 libpostproc52_CONTENTS="usr/bin/cygpostproc-52.dll"
 libswresample0_SUMMARY="FFmpeg audio/video resampling library"
@@ -43,6 +46,7 @@ src_compile() {
 		--enable-postproc --enable-swscale --enable-avfilter \
 		--enable-pthreads \
 		--enable-bzlib \
+		--enable-fontconfig \
 		--enable-frei0r \
 		--enable-gnutls \
 		--enable-libass \
@@ -79,15 +83,6 @@ src_compile() {
 		--disable-debug \
 		--disable-optimizations \
 		--enable-yasm \
-		--enable-ssse3 \
-		--disable-altivec \
-		--disable-amd3dnow \
-		--disable-amd3dnowext \
-		--disable-armv5te \
-		--disable-armv6 \
-		--disable-armv6t2 \
-		--disable-armvfp \
-		--disable-mmi \
 		--disable-stripping \
 		|| error "configure failed"
 	# workaround bug in parallel make
@@ -100,6 +95,9 @@ src_install() {
 	cd ${B}
 	cyginstall
 	dobin tools/qt-faststart.exe
+
+	dodir /usr/share/man/man3
+	mv ${D}/usr/share/man/man1/*.3 ${D}/usr/share/man/man3/
 
 	sed -i -e '/^Libs.private/d' ${D}/usr/lib/pkgconfig/*
 }

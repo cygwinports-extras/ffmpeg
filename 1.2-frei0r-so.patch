@@ -1,0 +1,11 @@
+--- origsrc/ffmpeg-1.2.3/libavfilter/vf_frei0r.c	2013-08-26 19:13:46.000000000 -0500
++++ src/ffmpeg-1.2.3/libavfilter/vf_frei0r.c	2013-09-17 22:00:08.573767600 -0500
+@@ -206,7 +206,7 @@ static int set_params(AVFilterContext *c
+ 
+ static int load_path(AVFilterContext *ctx, void **handle_ptr, const char *prefix, const char *name)
+ {
+-    char *path = av_asprintf("%s%s%s", prefix, name, SLIBSUF);
++    char *path = av_asprintf("%s%s.so", prefix, name);
+     if (!path)
+         return AVERROR(ENOMEM);
+     av_log(ctx, AV_LOG_DEBUG, "Looking for frei0r effect in '%s'\n", path);
