@@ -1,5 +1,5 @@
 NAME="ffmpeg"
-VERSION=1.2.3
+VERSION=1.2.10
 RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="FFmpeg audio/video player and converter"
