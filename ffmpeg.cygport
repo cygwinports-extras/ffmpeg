@@ -1,5 +1,5 @@
 NAME="ffmpeg"
-VERSION=1.2.11
+VERSION=2.6.3
 RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="FFmpeg audio/video player and converter"
@@ -12,27 +12,27 @@ PATCH_URI="
 	1.2-cygwin.patch
 "
 
-PKG_NAMES="ffmpeg libav-devel libavcodec54 libavdevice54 libavfilter3
-           libavformat54 libavutil52 libpostproc52 libswresample0 libswscale2"
+PKG_NAMES="ffmpeg libav-devel libavcodec56 libavdevice56 libavfilter5
+           libavformat56 libavutil54 libpostproc53 libswresample1 libswscale3"
 ffmpeg_CONTENTS='--exclude=html --exclude=man3 usr/bin/*.exe usr/share/'
 libav_devel_SUMMARY="FFmpeg audio/video libraries (development)"
 libav_devel_CONTENTS="usr/include/ usr/lib/ usr/share/man/man3/"
-libavcodec54_SUMMARY="FFmpeg audio/video codec library"
-libavcodec54_CONTENTS="usr/bin/cygavcodec-54.dll"
-libavdevice54_SUMMARY="FFmpeg audio/video device library"
-libavdevice54_CONTENTS="usr/bin/cygavdevice-54.dll"
-libavfilter3_SUMMARY="FFmpeg audio/video filter library"
-libavfilter3_CONTENTS="usr/bin/cygavfilter-3.dll"
-libavformat54_SUMMARY="FFmpeg audio/video format library"
-libavformat54_CONTENTS="usr/bin/cygavformat-54.dll"
-libavutil52_SUMMARY="FFmpeg audio/video utility library"
-libavutil52_CONTENTS="usr/bin/cygavutil-52.dll"
-libpostproc52_SUMMARY="FFmpeg audio/video postprocessing library"
-libpostproc52_CONTENTS="usr/bin/cygpostproc-52.dll"
-libswresample0_SUMMARY="FFmpeg audio/video resampling library"
-libswresample0_CONTENTS="usr/bin/cygswresample-0.dll"
-libswscale2_SUMMARY="FFmpeg audio/video rescaling library"
-libswscale2_CONTENTS="usr/bin/cygswscale-2.dll"
+libavcodec56_SUMMARY="FFmpeg audio/video codec library"
+libavcodec56_CONTENTS="usr/bin/cygavcodec-56.dll"
+libavdevice56_SUMMARY="FFmpeg audio/video device library"
+libavdevice56_CONTENTS="usr/bin/cygavdevice-56.dll"
+libavfilter5_SUMMARY="FFmpeg audio/video filter library"
+libavfilter5_CONTENTS="usr/bin/cygavfilter-5.dll"
+libavformat56_SUMMARY="FFmpeg audio/video format library"
+libavformat56_CONTENTS="usr/bin/cygavformat-56.dll"
+libavutil54_SUMMARY="FFmpeg audio/video utility library"
+libavutil54_CONTENTS="usr/bin/cygavutil-54.dll"
+libpostproc53_SUMMARY="FFmpeg audio/video postprocessing library"
+libpostproc53_CONTENTS="usr/bin/cygpostproc-53.dll"
+libswresample1_SUMMARY="FFmpeg audio/video resampling library"
+libswresample1_CONTENTS="usr/bin/cygswresample-1.dll"
+libswscale3_SUMMARY="FFmpeg audio/video rescaling library"
+libswscale3_CONTENTS="usr/bin/cygswscale-3.dll"
 
 src_compile() {
 	cd ${B}
@@ -51,9 +51,13 @@ src_compile() {
 		--enable-gnutls \
 		--enable-libass \
 		--enable-libbluray \
+		--enable-libbs2b \
+		--enable-libcaca \
 		--enable-libcdio \
-		--enable-libcelt \
+		--enable-libflite \
 		--enable-libfreetype \
+		--enable-libfribidi \
+		--enable-libgme \
 		--enable-libgsm \
 		--enable-libilbc \
 		--enable-libmodplug \
@@ -68,17 +72,23 @@ src_compile() {
 		--enable-librtmp \
 		--enable-libschroedinger \
 		--enable-libspeex \
+		--enable-libssh \
 		--enable-libtheora \
 		--enable-libtwolame \
-		--disable-libutvideo \
 		--enable-libvo-aacenc \
 		--enable-libvo-amrwbenc \
 		--enable-libvorbis \
 		--enable-libvpx \
+		--enable-libwavpack \
+		--enable-libwebp \
 		--enable-libx264 \
-		--disable-libxavs \
+		--enable-libx265 \
+		--enable-libxcb \
+		--enable-libxcb-shm \
+		--enable-libxcb-xfixes \
+		--enable-libxcb-shape \
 		--enable-openal \
-		--enable-x11grab \
+		--enable-opengl \
 		--enable-zlib \
 		--disable-debug \
 		--disable-optimizations \
@@ -95,9 +105,6 @@ src_install() {
 	cd ${B}
 	cyginstall
 	dobin tools/qt-faststart.exe
-
-	dodir /usr/share/man/man3
-	mv ${D}/usr/share/man/man1/*.3 ${D}/usr/share/man/man3/
 
 	sed -i -e '/^Libs.private/d' ${D}/usr/lib/pkgconfig/*
 }
