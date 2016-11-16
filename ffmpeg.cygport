@@ -1,5 +1,5 @@
 NAME="ffmpeg"
-VERSION=2.6.3
+VERSION=2.8.8
 RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="FFmpeg audio/video player and converter"
@@ -38,6 +38,7 @@ src_compile() {
 	cd ${B}
 	# -fomit-frame-pointer: http://lists.mplayerhq.hu/pipermail/mplayer-dev-eng/2006-November/047222.html
 	CFLAGS+=" -O3 -fomit-frame-pointer"
+#		--enable-frei0r \
 	${S}/configure \
 		--prefix=/usr --libdir=/usr/lib --shlibdir=/usr/bin \
 		--incdir=/usr/include --mandir=/usr/share/man \
@@ -47,7 +48,6 @@ src_compile() {
 		--enable-pthreads \
 		--enable-bzlib \
 		--enable-fontconfig \
-		--enable-frei0r \
 		--enable-gnutls \
 		--enable-libass \
 		--enable-libbluray \
@@ -88,6 +88,7 @@ src_compile() {
 		--enable-libxcb-xfixes \
 		--enable-libxcb-shape \
 		--enable-openal \
+		--enable-opencl \
 		--enable-opengl \
 		--enable-zlib \
 		--disable-debug \
