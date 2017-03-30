@@ -1,44 +1,47 @@
 NAME="ffmpeg"
-VERSION=2.8.11
+VERSION=3.2.4
 RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="FFmpeg audio/video player and converter"
 DESCRIPTION="FFmpeg is a complete solution to record, convert and stream audio
 and video. It includes libavcodec, the leading audio/video codec library."
 HOMEPAGE="http://ffmpeg.org/"
-SRC_URI="http://ffmpeg.org/releases/ffmpeg-${VERSION}.tar.bz2"
+SRC_URI="http://ffmpeg.org/releases/ffmpeg-${VERSION}.tar.xz"
 PATCH_URI="
 	1.2-frei0r-so.patch
 	1.2-cygwin.patch
 "
 
-PKG_NAMES="ffmpeg libav-devel libavcodec56 libavdevice56 libavfilter5
-           libavformat56 libavutil54 libpostproc53 libswresample1 libswscale3"
+PKG_NAMES="ffmpeg libav-devel libavcodec57 libavdevice57 libavfilter6
+           libavformat57 libavutil55 libpostproc54 libswresample2 libswscale4"
 ffmpeg_CONTENTS='--exclude=html --exclude=man3 usr/bin/*.exe usr/share/'
 libav_devel_SUMMARY="FFmpeg audio/video libraries (development)"
 libav_devel_CONTENTS="usr/include/ usr/lib/ usr/share/man/man3/"
-libavcodec56_SUMMARY="FFmpeg audio/video codec library"
-libavcodec56_CONTENTS="usr/bin/cygavcodec-56.dll"
-libavdevice56_SUMMARY="FFmpeg audio/video device library"
-libavdevice56_CONTENTS="usr/bin/cygavdevice-56.dll"
-libavfilter5_SUMMARY="FFmpeg audio/video filter library"
-libavfilter5_CONTENTS="usr/bin/cygavfilter-5.dll"
-libavformat56_SUMMARY="FFmpeg audio/video format library"
-libavformat56_CONTENTS="usr/bin/cygavformat-56.dll"
-libavutil54_SUMMARY="FFmpeg audio/video utility library"
-libavutil54_CONTENTS="usr/bin/cygavutil-54.dll"
-libpostproc53_SUMMARY="FFmpeg audio/video postprocessing library"
-libpostproc53_CONTENTS="usr/bin/cygpostproc-53.dll"
-libswresample1_SUMMARY="FFmpeg audio/video resampling library"
-libswresample1_CONTENTS="usr/bin/cygswresample-1.dll"
-libswscale3_SUMMARY="FFmpeg audio/video rescaling library"
-libswscale3_CONTENTS="usr/bin/cygswscale-3.dll"
+libavcodec57_SUMMARY="FFmpeg audio/video codec library"
+libavcodec57_CONTENTS="usr/bin/cygavcodec-57.dll"
+libavdevice57_SUMMARY="FFmpeg audio/video device library"
+libavdevice57_CONTENTS="usr/bin/cygavdevice-57.dll"
+libavfilter6_SUMMARY="FFmpeg audio/video filter library"
+libavfilter6_CONTENTS="usr/bin/cygavfilter-6.dll"
+libavformat57_SUMMARY="FFmpeg audio/video format library"
+libavformat57_CONTENTS="usr/bin/cygavformat-57.dll"
+libavutil55_SUMMARY="FFmpeg audio/video utility library"
+libavutil55_CONTENTS="usr/bin/cygavutil-55.dll"
+libpostproc54_SUMMARY="FFmpeg audio/video postprocessing library"
+libpostproc54_CONTENTS="usr/bin/cygpostproc-54.dll"
+libswresample2_SUMMARY="FFmpeg audio/video resampling library"
+libswresample2_CONTENTS="usr/bin/cygswresample-2.dll"
+libswscale4_SUMMARY="FFmpeg audio/video rescaling library"
+libswscale4_CONTENTS="usr/bin/cygswscale-4.dll"
 
 src_compile() {
 	cd ${B}
 	# -fomit-frame-pointer: http://lists.mplayerhq.hu/pipermail/mplayer-dev-eng/2006-November/047222.html
 	CFLAGS+=" -O3 -fomit-frame-pointer"
-#		--enable-frei0r \
+	# for consideration for future addition:
+	# frei0r, libdc1394 (with CMU 1394camera), libebur128, libopenmpt,
+	# librubberband, libshine, libsnappy, libtesseract, libvidstab,
+	# libzimg, libzmq
 	${S}/configure \
 		--prefix=/usr --libdir=/usr/lib --shlibdir=/usr/bin \
 		--incdir=/usr/include --mandir=/usr/share/man \
@@ -47,14 +50,18 @@ src_compile() {
 		--enable-postproc --enable-swscale --enable-avfilter \
 		--enable-pthreads \
 		--enable-bzlib \
-		--enable-fontconfig \
+		--enable-chromaprint \
+		--enable-gcrypt \
+		--enable-gmp \
 		--enable-gnutls \
+		--enable-ladspa \
 		--enable-libass \
 		--enable-libbluray \
 		--enable-libbs2b \
 		--enable-libcaca \
 		--enable-libcdio \
 		--enable-libflite \
+		--enable-libfontconfig \
 		--enable-libfreetype \
 		--enable-libfribidi \
 		--enable-libgme \
@@ -62,20 +69,21 @@ src_compile() {
 		--enable-libilbc \
 		--enable-libmodplug \
 		--enable-libmp3lame \
-		--enable-libopenjpeg \
 		--enable-libopencore-amrnb \
 		--enable-libopencore-amrwb \
+		--enable-libopenh264 \
+		--enable-libopenjpeg \
 		--enable-libopencv \
 		--enable-libopenjpeg \
 		--enable-libopus \
 		--enable-libpulse \
 		--enable-librtmp \
 		--enable-libschroedinger \
+		--enable-libsoxr \
 		--enable-libspeex \
 		--enable-libssh \
 		--enable-libtheora \
 		--enable-libtwolame \
-		--enable-libvo-aacenc \
 		--enable-libvo-amrwbenc \
 		--enable-libvorbis \
 		--enable-libvpx \
@@ -87,6 +95,7 @@ src_compile() {
 		--enable-libxcb-shm \
 		--enable-libxcb-xfixes \
 		--enable-libxcb-shape \
+		--enable-netcdf \
 		--enable-openal \
 		--enable-opencl \
 		--enable-opengl \
