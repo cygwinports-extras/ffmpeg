@@ -1,6 +1,6 @@
 NAME="ffmpeg"
-VERSION=3.2.4
-RELEASE=2
+VERSION=3.2.5
+RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="FFmpeg audio/video player and converter"
 DESCRIPTION="FFmpeg is a complete solution to record, convert and stream audio
