@@ -1,5 +1,5 @@
 NAME="ffmpeg"
-VERSION=3.2.5
+VERSION=3.2.6
 RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="FFmpeg audio/video player and converter"
@@ -115,6 +115,4 @@ src_install() {
 	cd ${B}
 	cyginstall
 	dobin tools/qt-faststart.exe
-
-	sed -i -e '/^Libs.private/d' ${D}/usr/lib/pkgconfig/*
 }
