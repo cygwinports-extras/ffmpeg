@@ -1,5 +1,5 @@
 NAME="ffmpeg"
-VERSION=3.3.6
+VERSION=3.4.2
 RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="FFmpeg audio/video player and converter"
@@ -39,7 +39,7 @@ src_compile() {
 	# -fomit-frame-pointer: http://lists.mplayerhq.hu/pipermail/mplayer-dev-eng/2006-November/047222.html
 	CFLAGS+=" -O3 -fomit-frame-pointer"
 	# for consideration for future addition:
-	# frei0r, libdc1394 (with CMU 1394camera), libopenmpt,
+	# frei0r, libdc1394 (with CMU 1394camera),
 	# librubberband, libshine, libsnappy, libtesseract, libvidstab,
 	# libzimg, libzmq
 	${S}/configure \
@@ -75,10 +75,11 @@ src_compile() {
 		--enable-libopencv \
 		--enable-libopenh264 \
 		--enable-libopenjpeg \
+		--enable-libopenmpt \
 		--enable-libopus \
 		--enable-libpulse \
+		--enable-librsvg \
 		--enable-librtmp \
-		--enable-libschroedinger \
 		--enable-libsoxr \
 		--enable-libspeex \
 		--enable-libssh \
@@ -95,7 +96,6 @@ src_compile() {
 		--enable-libxcb-shm \
 		--enable-libxcb-xfixes \
 		--enable-libxcb-shape \
-		--enable-netcdf \
 		--enable-openal \
 		--enable-opencl \
 		--enable-opengl \
