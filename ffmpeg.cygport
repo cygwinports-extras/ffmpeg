@@ -1,6 +1,6 @@
 NAME="ffmpeg"
 VERSION=3.4.2
-RELEASE=1
+RELEASE=2
 CATEGORY="Audio Video"
 SUMMARY="FFmpeg audio/video player and converter"
 DESCRIPTION="FFmpeg is a complete solution to record, convert and stream audio
@@ -38,6 +38,7 @@ src_compile() {
 	cd ${B}
 	# -fomit-frame-pointer: http://lists.mplayerhq.hu/pipermail/mplayer-dev-eng/2006-November/047222.html
 	CFLAGS+=" -O3 -fomit-frame-pointer"
+	# libopencv FTBFS: https://github.com/opencv/opencv/issues/10963
 	# for consideration for future addition:
 	# frei0r, libdc1394 (with CMU 1394camera),
 	# librubberband, libshine, libsnappy, libtesseract, libvidstab,
@@ -72,7 +73,6 @@ src_compile() {
 		--enable-libmp3lame \
 		--enable-libopencore-amrnb \
 		--enable-libopencore-amrwb \
-		--enable-libopencv \
 		--enable-libopenh264 \
 		--enable-libopenjpeg \
 		--enable-libopenmpt \
